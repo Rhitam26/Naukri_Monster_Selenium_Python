@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 import autoit
+import os
 
 import time
 from selenium.webdriver.support import expected_conditions as EC
@@ -40,7 +41,7 @@ def naukri(dict_config):
             )
         driver.find_element(By.XPATH,'//*[@id="lazyAttachCV"]/div/div/div[2]/div/div/div[1]/div[1]/section/div').click()
         time.sleep(5)
-        cv_path = dict_config["cv_path"]
+        cv_path = os.path.abspath(os.getcwd())+dict_config["cv_path"]
         autoit.control_send("Open","Edit1",cv_path)
         autoit.control_click("Open","Button1")
         logging.info('------ NAUKRI UPDATE PROCESS ENDS -------')

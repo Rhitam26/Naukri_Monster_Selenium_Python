@@ -15,10 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 logging.basicConfig(filename=log_f, level=logging.INFO, format='%(asctime)s:%(levelname)s: %(message)s')
 
-options = webdriver.ChromeOptions()
-options.add_experimental_option('detach', True)
-driver = webdriver.Chrome('./Chrome_Driver/chromedriver.exe', options=options)
-def naukri(dict_config):
+def naukri(dict_config, driver):
     try:
         logging.info('------ NAUKRI UPDATE PROCESS STARTS -------')
         driver.get("https://www.naukri.com/")
@@ -49,7 +46,7 @@ def naukri(dict_config):
         logging.error(f'Error while perfomring Naukri Upload')
 
 
-def foundit(dict_config):
+def foundit(dict_config, driver):
     logging.info('------ MONSTER UPDATE PROCESS STARTS -------')
     driver.get("https://www.foundit.in/")
     driver.maximize_window()
@@ -79,11 +76,23 @@ def foundit(dict_config):
     logging.info('------ MONSTER UPDATE PROCESS ENDS -------')
 
 def main(dict_config):
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('detach', True)
+    options.add_argument("--headless")
+    options.add_argument("window-size=1400,1500")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("start-maximized")
+    options.add_argument("enable-automation")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome('./Chrome_Driver/chromedriver.exe', options=options)
+
     if dict_config['execution_type'] == 'both':
-        naukri(dict_config)
-        foundit(dict_config)
+        naukri(dict_config, driver)
+        foundit(dict_config, driver)
     elif dict_config['execution_type'] == 'naukri':
-        naukri(dict_config)
+        naukri(dict_config, driver)
     elif dict_config['execution_type'] == 'monster':
         foundit(dict_config)
 

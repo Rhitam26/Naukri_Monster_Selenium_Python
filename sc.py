@@ -73,12 +73,12 @@ def foundit(dict_config, driver):
         driver.find_element(By.XPATH,'/html/body/div[3]/div[1]/div[3]/div[1]/div[1]/aside/div[2]/div/div[2]/div/div/div/div/div/div/div/div/button').click()
     except:
         logging.error("Exception Occured while Updating Notice Period")
+    driver.quit()
     logging.info('------ MONSTER UPDATE PROCESS ENDS -------')
 
 def main(dict_config):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
-    options.add_argument("--headless")
     options.add_argument("window-size=1400,1500")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")

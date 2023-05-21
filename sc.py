@@ -64,7 +64,7 @@ def foundit(dict_config, driver):
         driver.find_element(By.XPATH,'//*[@id="user-profile-left"]/aside/div[1]/div[2]/div/span').click()
     except:
         print("Exception")
-
+    driver.implicitly_wait(5)
     driver.find_element(By.XPATH,'//*[@id="availableToJoin"]/div/div/span/label').click()
 
     try:

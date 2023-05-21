@@ -48,6 +48,9 @@ def naukri(dict_config, driver):
 
 
 def foundit(dict_config, driver):
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('detach', True)
+    driver = webdriver.Chrome('./Chrome_Driver/chromedriver.exe', options=options)
     logging.info('------ MONSTER UPDATE PROCESS STARTS -------')
     driver.get("https://www.foundit.in/")
     driver.maximize_window()
@@ -81,15 +84,7 @@ def foundit(dict_config, driver):
 def main(dict_config):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
-    options.add_argument("window-size=1400,1500")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("start-maximized")
-    options.add_argument("enable-automation")
-    options.add_argument("--disable-infobars")
-    options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome('./Chrome_Driver/chromedriver.exe', options=options)
-
     if dict_config['execution_type'] == 'both':
         naukri(dict_config, driver)
         foundit(dict_config, driver)

@@ -20,17 +20,18 @@ def naukri(dict_config, driver):
         logging.info('------ NAUKRI UPDATE PROCESS STARTS -------')
         driver.get("https://www.naukri.com/")
         driver.maximize_window()
+        driver.implicitly_wait(50)
         driver.find_element(By.XPATH,'//*[@id="login_Layer"]').click()
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(7)
         driver.find_element(By.XPATH,'//*[@id="root"]/div[4]/div[2]/div/div/div[2]/div/form/div[2]/input').click()
         un= dict_config["naukri_un"]
         password = dict_config["naukri_pw"]
         driver.find_element(By.XPATH,'//*[@id="root"]/div[4]/div[2]/div/div/div[2]/div/form/div[2]/input').send_keys(un)
         driver.find_element(By.XPATH,'//*[@id="root"]/div[4]/div[2]/div/div/div[2]/div/form/div[3]/input').send_keys(password)
         driver.find_element(By.XPATH,'//*[@id="root"]/div[4]/div[2]/div/div/div[2]/div/form/div[6]/button').click()
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(7)
         driver.find_element(By.XPATH,'/html/body/div[3]/div[2]/div[3]/div/div[2]/img').click()
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(7)
         driver.find_element(By.XPATH,'/html/body/div[3]/div[2]/div[3]/div[2]/div[2]/div/div[1]/div[2]/a').click()
         driver.implicitly_wait(15)
         element = WebDriverWait(driver, 10).until(
@@ -50,26 +51,27 @@ def foundit(dict_config, driver):
     logging.info('------ MONSTER UPDATE PROCESS STARTS -------')
     driver.get("https://www.foundit.in/")
     driver.maximize_window()
+    driver.implicitly_wait(10)
     driver.find_element(By.XPATH,'//*[@id="topHeader"]/div[2]/div[2]/div/div[2]/ul/li[1]/a/span').click()
     un= dict_config["monster_un"]
     password = dict_config["monster_pw"]
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
     driver.find_element(By.XPATH,'//*[@id="signInName"]').send_keys(un)
     driver.find_element(By.XPATH,'//*[@id="password"]').send_keys(password)
     driver.find_element(By.XPATH,'//*[@id="signInbtn"]').click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(7)
     driver.find_element(By.XPATH,'//*[@id="topHeader"]/div[2]/div[2]/div/div[2]/ul/li[3]/span/span').click()
 
     try:
         driver.find_element(By.XPATH,'//*[@id="user-profile-left"]/aside/div[1]/div[2]/div/span').click()
     except:
         print("Exception")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(7)
     driver.find_element(By.XPATH,'//*[@id="availableToJoin"]/div/div/span/label').click()
 
     try:
         driver.find_element(By.XPATH,'/html/body/div[3]/div[1]/div[3]/div[1]/div[1]/aside/div[2]/div/div[2]/div/div/div/div/div/div[5]/div/div/button').click()
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(7)
         driver.find_element(By.XPATH,'/html/body/div[3]/div[1]/div[3]/div[1]/div[1]/aside/div[2]/div/div[2]/div/div/div/div/div/div/div/div/button').click()
     except:
         logging.error("Exception Occured while Updating Notice Period")
